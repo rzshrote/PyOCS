@@ -4,32 +4,34 @@ import numpy
 def solve_ocs(bv, geno, inbmax):
     """
     Solve Optimal Contribution Selection:
-                argmax(x) = (bv)'(x)
-        subject to:
-                    x'Kx <= inbmax
-                     x_i >= 0       for all i
-        Where:
-            'bv' are breeding values.
-            'K' is a kinship matrix.
-            'inbmax' is the inbreeding constraint.
+    argmax(x) = (bv)'(x)
+    subject to:
+    x'Kx <= inbmax
+    x_i >= 0       for all i
+    Where:
+    'bv' are breeding values.
+    'K' is a kinship matrix.
+    'inbmax' is the inbreeding constraint.
 
-    Reference
-    ---------
-        Allier A, Lehermeier C, Charcosset A, Moreau L, Teyssèdre S (2019).
-        Improving Short- and Long-Term Genetic Gain by Accounting for
-        Within-Family Variance in Optimal Cross-Selection. Front Genet. 10: 1006
+    References
+    ----------
+    Allier A, Lehermeier C, Charcosset A, Moreau L, Teyssèdre S (2019).
+    Improving Short- and Long-Term Genetic Gain by Accounting for
+    Within-Family Variance in Optimal Cross-Selection. Front Genet. 10: 1006
 
     Parameters
     ----------
     bv : numpy.ndarray
         A matrix of shape (n,) containing breeding values.
         Where:
-            'n' is the number of breeding individuals.
+
+        * 'n' is the number of breeding individuals.
     geno : numpy.ndarray
         A matrix of shape (n,p) containing genotypes encoded using {-1, 0, 1}.
         Where:
-            'n' is the number of breeding individuals.
-            'p' is the number of genotypic markers.
+
+        * 'n' is the number of breeding individuals.
+        * 'p' is the number of genotypic markers.
     inbmax : float
         Maximum mean population inbreeding constraint. Must be greater than the
         mean kinship for individuals in 'geno'.
